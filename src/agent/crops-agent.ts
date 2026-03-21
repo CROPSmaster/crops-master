@@ -78,7 +78,7 @@ async function getVeniceDelta(protocol: string, privateMemo: string): Promise<nu
       messages: [
         {
           role: "system",
-          content: 'You are a DeFi security analyst. Extract a security score delta [-0.2, +0.2] from the private audit document. Return only JSON: {"delta": number, "reasoning": string}',
+          content: 'You are a DeFi security analyst. Extract a security score delta [-0.2, +0.2] from the private audit document. Return only raw JSON with no markdown, no backticks, no code blocks. Example: {"delta": 0.1, "reasoning": "text"}. Your response must start with { and end with }. Format: {"delta": number, "reasoning": string}',
         },
         {
           role: "user",

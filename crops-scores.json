@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-21T17:14:35.962Z",
+  "timestamp": "2026-03-21T17:43:24.342Z",
   "scores": [
     {
       "name": "Railgun",
@@ -7,19 +7,9 @@
       "cr": 1,
       "os": 0.0352,
       "privacy": 0.675,
-      "s": 0.255,
-      "crops": 0.52855,
-      "txHash": "0xd9cb9ed5653e4acdf2e7f0b1535fa278412ab54b7d97b0c52c481742d56a8b7d"
-    },
-    {
-      "name": "Aave V3",
-      "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
-      "cr": 0.58,
-      "os": 0.136,
-      "privacy": 0.115,
-      "s": 0.722,
-      "crops": 0.38115,
-      "txHash": "0x209be25a0351069a7b68e7edc2c0b487fc9903ce0bbb58daf0c7a22e2feebbe4"
+      "s": 0.405,
+      "crops": 0.55855,
+      "txHash": "0xccc63b6cb8414e2ae591044656f71dedca4fd3655ea42205226faf962949b48b"
     },
     {
       "name": "Uniswap V4",
@@ -27,14 +17,24 @@
       "cr": 0.73,
       "os": 0.192,
       "privacy": 0.11,
-      "s": 0.36,
-      "crops": 0.36650000000000005,
-      "txHash": "0x889401b0a4be02993ac15463bf422b69872426c8856ba5a5f94e9cf285b12a1f"
+      "s": 0.45999999999999996,
+      "crops": 0.38650000000000007,
+      "txHash": "0x1a66cee39e238a446c508642d55587d48218d1083e13638516d43a6cb32714f8"
+    },
+    {
+      "name": "Aave V3",
+      "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "cr": 0.58,
+      "os": 0.136,
+      "privacy": 0.115,
+      "s": 0.6719999999999999,
+      "crops": 0.37115,
+      "txHash": "0x701753a62648e25651cd2abd72692e05260a8084f7afebec2c709173d633ae3e"
     }
   ],
   "top3": [
     "0x3B3ee1931Dc30C1957379FAc9aba94D1C48a5405",
-    "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
-    "0x1F98431c8aD98523631AE4a59f267346ea31F984"
+    "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+    "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
   ]
 }
