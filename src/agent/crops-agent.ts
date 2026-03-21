@@ -11,7 +11,7 @@ const venice = new OpenAI({
 });
 
 // On-chain setup — Base Sepolia
-const provider = new ethers.JsonRpcProvider("https://sepolia.base.org");
+const provider = new ethers.JsonRpcProvider("https://eth-sepolia.g.alchemy.com/v2/PPbsaQE2YgdSUMUhAIWMXkPEFB6Q945p");
 const agentWallet = new ethers.Wallet(process.env.AGENT_PRIVATE_KEY!, provider);
 const VAULT_ABI = [
   "function updateScore(address protocol, uint256 score) external",
