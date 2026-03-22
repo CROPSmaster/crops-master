@@ -1,0 +1,497 @@
+{
+  "timestamp": "2026-03-22T21:37:08.557Z",
+  "period": "2025-03-22 → 2026-03-21",
+  "initialValue": 10000,
+  "metrics": {
+    "cropsReturn": 34.25,
+    "ethReturn": 5.27,
+    "alpha": 28.98,
+    "sharpe": 0.74,
+    "maxDrawdown": 56.7,
+    "rebalances": 26
+  },
+  "weights": {
+    "RAIL": 0.43858972380805433,
+    "UNI": 0.2981792933189323,
+    "AAVE": 0.26323098287301344
+  },
+  "weeklyData": [
+    {
+      "week": 0,
+      "date": "2025-03-22",
+      "ethPrice": 1980.4,
+      "cropsValue": 10000,
+      "ethValue": 10000,
+      "cropsReturn": 0,
+      "ethReturn": 0
+    },
+    {
+      "week": 1,
+      "date": "2025-03-29",
+      "ethPrice": 1827.68,
+      "cropsValue": 9586.89,
+      "ethValue": 9228.84,
+      "cropsReturn": -4.13,
+      "ethReturn": -7.71
+    },
+    {
+      "week": 2,
+      "date": "2025-04-05",
+      "ethPrice": 1805.19,
+      "cropsValue": 8434.33,
+      "ethValue": 9115.28,
+      "cropsReturn": -15.66,
+      "ethReturn": -8.85
+    },
+    {
+      "week": 3,
+      "date": "2025-04-12",
+      "ethPrice": 1643.84,
+      "cropsValue": 10558.86,
+      "ethValue": 8300.55,
+      "cropsReturn": 5.59,
+      "ethReturn": -16.99
+    },
+    {
+      "week": 4,
+      "date": "2025-04-19",
+      "ethPrice": 1612.74,
+      "cropsValue": 10411.27,
+      "ethValue": 8143.51,
+      "cropsReturn": 4.11,
+      "ethReturn": -18.56
+    },
+    {
+      "week": 5,
+      "date": "2025-04-26",
+      "ethPrice": 1821.45,
+      "cropsValue": 11176.02,
+      "ethValue": 9197.38,
+      "cropsReturn": 11.76,
+      "ethReturn": -8.03
+    },
+    {
+      "week": 6,
+      "date": "2025-05-03",
+      "ethPrice": 1833.95,
+      "cropsValue": 10735.9,
+      "ethValue": 9260.5,
+      "cropsReturn": 7.36,
+      "ethReturn": -7.39
+    },
+    {
+      "week": 7,
+      "date": "2025-05-10",
+      "ethPrice": 2583.77,
+      "cropsValue": 14114.28,
+      "ethValue": 13046.71,
+      "cropsReturn": 41.14,
+      "ethReturn": 30.47
+    },
+    {
+      "week": 8,
+      "date": "2025-05-17",
+      "ethPrice": 2476.16,
+      "cropsValue": 12810.4,
+      "ethValue": 12503.33,
+      "cropsReturn": 28.1,
+      "ethReturn": 25.03
+    },
+    {
+      "week": 9,
+      "date": "2025-05-24",
+      "ethPrice": 2530.92,
+      "cropsValue": 13848.18,
+      "ethValue": 12779.84,
+      "cropsReturn": 38.48,
+      "ethReturn": 27.8
+    },
+    {
+      "week": 10,
+      "date": "2025-05-31",
+      "ethPrice": 2529.32,
+      "cropsValue": 13578.85,
+      "ethValue": 12771.76,
+      "cropsReturn": 35.79,
+      "ethReturn": 27.72
+    },
+    {
+      "week": 11,
+      "date": "2025-06-07",
+      "ethPrice": 2526.17,
+      "cropsValue": 13607.9,
+      "ethValue": 12755.86,
+      "cropsReturn": 36.08,
+      "ethReturn": 27.56
+    },
+    {
+      "week": 12,
+      "date": "2025-06-14",
+      "ethPrice": 2532.75,
+      "cropsValue": 14915.3,
+      "ethValue": 12789.08,
+      "cropsReturn": 49.15,
+      "ethReturn": 27.89
+    },
+    {
+      "week": 13,
+      "date": "2025-06-21",
+      "ethPrice": 2296.94,
+      "cropsValue": 12974.67,
+      "ethValue": 11598.36,
+      "cropsReturn": 29.75,
+      "ethReturn": 15.98
+    },
+    {
+      "week": 14,
+      "date": "2025-06-28",
+      "ethPrice": 2437.55,
+      "cropsValue": 13981.97,
+      "ethValue": 12308.37,
+      "cropsReturn": 39.82,
+      "ethReturn": 23.08
+    },
+    {
+      "week": 15,
+      "date": "2025-07-05",
+      "ethPrice": 2517.09,
+      "cropsValue": 14668.99,
+      "ethValue": 12710.01,
+      "cropsReturn": 46.69,
+      "ethReturn": 27.1
+    },
+    {
+      "week": 16,
+      "date": "2025-07-12",
+      "ethPrice": 2944.27,
+      "cropsValue": 16401.04,
+      "ethValue": 14867.05,
+      "cropsReturn": 64.01,
+      "ethReturn": 48.67
+    },
+    {
+      "week": 17,
+      "date": "2025-07-19",
+      "ethPrice": 3594.34,
+      "cropsValue": 17162.87,
+      "ethValue": 18149.57,
+      "cropsReturn": 71.63,
+      "ethReturn": 81.5
+    },
+    {
+      "week": 18,
+      "date": "2025-07-26",
+      "ethPrice": 3742.79,
+      "cropsValue": 17676.28,
+      "ethValue": 18899.16,
+      "cropsReturn": 76.76,
+      "ethReturn": 88.99
+    },
+    {
+      "week": 19,
+      "date": "2025-08-02",
+      "ethPrice": 3393.4,
+      "cropsValue": 14839.98,
+      "ethValue": 17134.92,
+      "cropsReturn": 48.4,
+      "ethReturn": 71.35
+    },
+    {
+      "week": 20,
+      "date": "2025-08-09",
+      "ethPrice": 4262.92,
+      "cropsValue": 17431.87,
+      "ethValue": 21525.55,
+      "cropsReturn": 74.32,
+      "ethReturn": 115.26
+    },
+    {
+      "week": 21,
+      "date": "2025-08-16",
+      "ethPrice": 4425.22,
+      "cropsValue": 17326.47,
+      "ethValue": 22345.08,
+      "cropsReturn": 73.26,
+      "ethReturn": 123.45
+    },
+    {
+      "week": 22,
+      "date": "2025-08-23",
+      "ethPrice": 4777.18,
+      "cropsValue": 19756.53,
+      "ethValue": 24122.3,
+      "cropsReturn": 97.57,
+      "ethReturn": 141.22
+    },
+    {
+      "week": 23,
+      "date": "2025-08-30",
+      "ethPrice": 4374.94,
+      "cropsValue": 17773,
+      "ethValue": 22091.19,
+      "cropsReturn": 77.73,
+      "ethReturn": 120.91
+    },
+    {
+      "week": 24,
+      "date": "2025-09-06",
+      "ethPrice": 4274.53,
+      "cropsValue": 16678.93,
+      "ethValue": 21584.17,
+      "cropsReturn": 66.79,
+      "ethReturn": 115.84
+    },
+    {
+      "week": 25,
+      "date": "2025-09-13",
+      "ethPrice": 4669.05,
+      "cropsValue": 17597.21,
+      "ethValue": 23576.3,
+      "cropsReturn": 75.97,
+      "ethReturn": 135.76
+    },
+    {
+      "week": 26,
+      "date": "2025-09-20",
+      "ethPrice": 4482.83,
+      "cropsValue": 16330.44,
+      "ethValue": 22635.98,
+      "cropsReturn": 63.3,
+      "ethReturn": 126.36
+    },
+    {
+      "week": 27,
+      "date": "2025-09-27",
+      "ethPrice": 4020.82,
+      "cropsValue": 14555.67,
+      "ethValue": 20303.07,
+      "cropsReturn": 45.56,
+      "ethReturn": 103.03
+    },
+    {
+      "week": 28,
+      "date": "2025-10-04",
+      "ethPrice": 4489.84,
+      "cropsValue": 17569.01,
+      "ethValue": 22671.38,
+      "cropsReturn": 75.69,
+      "ethReturn": 126.71
+    },
+    {
+      "week": 29,
+      "date": "2025-10-11",
+      "ethPrice": 3750.88,
+      "cropsValue": 25505.34,
+      "ethValue": 18940.01,
+      "cropsReturn": 155.05,
+      "ethReturn": 89.4
+    },
+    {
+      "week": 30,
+      "date": "2025-10-18",
+      "ethPrice": 3890.7,
+      "cropsValue": 24730.91,
+      "ethValue": 19646.03,
+      "cropsReturn": 147.31,
+      "ethReturn": 96.46
+    },
+    {
+      "week": 31,
+      "date": "2025-10-25",
+      "ethPrice": 3954.72,
+      "cropsValue": 23553.9,
+      "ethValue": 19969.3,
+      "cropsReturn": 135.54,
+      "ethReturn": 99.69
+    },
+    {
+      "week": 32,
+      "date": "2025-11-01",
+      "ethPrice": 3872.94,
+      "cropsValue": 30784.08,
+      "ethValue": 19556.35,
+      "cropsReturn": 207.84,
+      "ethReturn": 95.56
+    },
+    {
+      "week": 33,
+      "date": "2025-11-08",
+      "ethPrice": 3400.93,
+      "cropsValue": 30061.18,
+      "ethValue": 17172.94,
+      "cropsReturn": 200.61,
+      "ethReturn": 71.73
+    },
+    {
+      "week": 34,
+      "date": "2025-11-15",
+      "ethPrice": 3166.61,
+      "cropsValue": 31008.05,
+      "ethValue": 15989.75,
+      "cropsReturn": 210.08,
+      "ethReturn": 59.9
+    },
+    {
+      "week": 35,
+      "date": "2025-11-22",
+      "ethPrice": 2768.91,
+      "cropsValue": 25014.31,
+      "ethValue": 13981.57,
+      "cropsReturn": 150.14,
+      "ethReturn": 39.82
+    },
+    {
+      "week": 36,
+      "date": "2025-11-29",
+      "ethPrice": 2990.56,
+      "cropsValue": 25391.33,
+      "ethValue": 15100.79,
+      "cropsReturn": 153.91,
+      "ethReturn": 51.01
+    },
+    {
+      "week": 37,
+      "date": "2025-12-06",
+      "ethPrice": 3039.34,
+      "cropsValue": 24035.97,
+      "ethValue": 15347.1,
+      "cropsReturn": 140.36,
+      "ethReturn": 53.47
+    },
+    {
+      "week": 38,
+      "date": "2025-12-13",
+      "ethPrice": 3115.34,
+      "cropsValue": 23665.31,
+      "ethValue": 15730.86,
+      "cropsReturn": 136.65,
+      "ethReturn": 57.31
+    },
+    {
+      "week": 39,
+      "date": "2025-12-20",
+      "ethPrice": 2977.06,
+      "cropsValue": 22798.63,
+      "ethValue": 15032.62,
+      "cropsReturn": 127.99,
+      "ethReturn": 50.33
+    },
+    {
+      "week": 40,
+      "date": "2025-12-27",
+      "ethPrice": 2947.05,
+      "cropsValue": 21275.9,
+      "ethValue": 14881.08,
+      "cropsReturn": 112.76,
+      "ethReturn": 48.81
+    },
+    {
+      "week": 41,
+      "date": "2026-01-03",
+      "ethPrice": 3125.76,
+      "cropsValue": 20597.83,
+      "ethValue": 15783.48,
+      "cropsReturn": 105.98,
+      "ethReturn": 57.83
+    },
+    {
+      "week": 42,
+      "date": "2026-01-10",
+      "ethPrice": 3082.33,
+      "cropsValue": 21164.55,
+      "ethValue": 15564.18,
+      "cropsReturn": 111.65,
+      "ethReturn": 55.64
+    },
+    {
+      "week": 43,
+      "date": "2026-01-17",
+      "ethPrice": 3309.35,
+      "cropsValue": 23708.76,
+      "ethValue": 16710.51,
+      "cropsReturn": 137.09,
+      "ethReturn": 67.11
+    },
+    {
+      "week": 44,
+      "date": "2026-01-24",
+      "ethPrice": 2949.21,
+      "cropsValue": 22443.17,
+      "ethValue": 14891.99,
+      "cropsReturn": 124.43,
+      "ethReturn": 48.92
+    },
+    {
+      "week": 45,
+      "date": "2026-01-31",
+      "ethPrice": 2449.81,
+      "cropsValue": 17597.67,
+      "ethValue": 12370.28,
+      "cropsReturn": 75.98,
+      "ethReturn": 23.7
+    },
+    {
+      "week": 46,
+      "date": "2026-02-07",
+      "ethPrice": 2086.62,
+      "cropsValue": 15158.3,
+      "ethValue": 10536.36,
+      "cropsReturn": 51.58,
+      "ethReturn": 5.36
+    },
+    {
+      "week": 47,
+      "date": "2026-02-14",
+      "ethPrice": 2085.7,
+      "cropsValue": 15163.28,
+      "ethValue": 10531.71,
+      "cropsReturn": 51.63,
+      "ethReturn": 5.32
+    },
+    {
+      "week": 48,
+      "date": "2026-02-21",
+      "ethPrice": 1973.16,
+      "cropsValue": 14517.46,
+      "ethValue": 9963.44,
+      "cropsReturn": 45.17,
+      "ethReturn": -0.37
+    },
+    {
+      "week": 49,
+      "date": "2026-02-28",
+      "ethPrice": 1964.82,
+      "cropsValue": 13517.85,
+      "ethValue": 9921.33,
+      "cropsReturn": 35.18,
+      "ethReturn": -0.79
+    },
+    {
+      "week": 50,
+      "date": "2026-03-07",
+      "ethPrice": 1969.49,
+      "cropsValue": 13499.35,
+      "ethValue": 9944.91,
+      "cropsReturn": 34.99,
+      "ethReturn": -0.55
+    },
+    {
+      "week": 51,
+      "date": "2026-03-14",
+      "ethPrice": 2096.74,
+      "cropsValue": 14264.31,
+      "ethValue": 10587.46,
+      "cropsReturn": 42.64,
+      "ethReturn": 5.87
+    },
+    {
+      "week": 52,
+      "date": "2026-03-21",
+      "ethPrice": 2084.73,
+      "cropsValue": 13425.09,
+      "ethValue": 10526.81,
+      "cropsReturn": 34.25,
+      "ethReturn": 5.27
+    }
+  ]
+}
