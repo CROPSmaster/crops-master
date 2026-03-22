@@ -1,40 +1,50 @@
 {
-  "timestamp": "2026-03-21T18:10:17.472Z",
+  "timestamp": "2026-03-22T10:48:14.713Z",
   "scores": [
     {
       "name": "Railgun",
       "address": "0x3B3ee1931Dc30C1957379FAc9aba94D1C48a5405",
+      "token": "WETH",
       "cr": 1,
       "os": 0.0352,
       "privacy": 0.675,
-      "s": 0.405,
-      "crops": 0.55855,
-      "txHash": "0x3bcdb6b07c2d252ca6470a4cf2486dd0d4743f3d93b369203266b177ddb7d4e4"
+      "s": 0.455,
+      "crops": 0.56855,
+      "scoreTx": "0x8516e557723944ce3bd4bb9ccde3b53fb6717c5f4c38692c4a23cabb45db20a0",
+      "swapTx": null
     },
     {
       "name": "Uniswap V4",
       "address": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+      "token": "USDC",
       "cr": 0.73,
       "os": 0.192,
       "privacy": 0.11,
       "s": 0.45999999999999996,
       "crops": 0.38650000000000007,
-      "txHash": "0x5b30db3c7a3a39b7e8a5f18ae4ae803c6287c19734984083ea1c2c58f42d6ac4"
+      "scoreTx": "0x6bb38374f480e3babba9dd7d467a55868589c149749bfb54f0f587fb9d5f9319",
+      "swapTx": null
     },
     {
       "name": "Aave V3",
       "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "token": "USDC",
       "cr": 0.58,
       "os": 0.136,
       "privacy": 0.115,
-      "s": 0.622,
-      "crops": 0.36114999999999997,
-      "txHash": "0x0fcd139c1960058cb5c1901dbb6f53bb586b69339087c141aa30f4d4ee19d650"
+      "s": 0.522,
+      "crops": 0.34115,
+      "scoreTx": "0x4b0fd1b23f3c8122ca43fb9c33edbf694935c3871605d4b047a5caba86d5ce97",
+      "swapTx": null
     }
   ],
   "top3": [
     "0x3B3ee1931Dc30C1957379FAc9aba94D1C48a5405",
     "0x1F98431c8aD98523631AE4a59f267346ea31F984",
     "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
-  ]
+  ],
+  "allocations": {
+    "Uniswap V4": "1358075522760033",
+    "Aave V3": "1198676987224818"
+  }
 }

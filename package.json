@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@uniswap/sdk-core": "^7.12.2",
     "dotenv": "^17.3.1",
     "ethers": "^6.16.0",
     "openai": "^6.32.0",
