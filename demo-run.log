@@ -1,0 +1,100 @@
+[dotenv@17.3.1] injecting env (7) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+═══════════════════════════════════════════════════════
+  CROPSmaster Agent — DEMO MODE (10 protocols)
+  Venice: real inference | Scores: on-chain | Swaps: hybrid
+═══════════════════════════════════════════════════════
+
+Vault:  0x339D8D21531abeBCd4612CF0c6e082FCc5fD6Dd1
+Agent:  0x43fb3bc082C286Bb0F19AD3F98418bb9181d704F
+
+
+▶ Railgun (RAIL) — weight: 25.0%
+  Venice Δ=+0.20 | Audit confirms Groth16 proof system is verified with no vulnerabilities, privacy...
+  CR=1.000 OS=0.035 P=0.675 S=0.455 → CROPS=0.5685
+  ✅ Score on-chain: 0x0f41e2a0c5cc20fe5f7ebfccef5a9800786695553d330ff4d0b20b9529a07c8c
+
+▶ Aztec (AZTEC) — weight: 20.0%
+  Venice Δ=+0.20 | 2 medium findings patched (positive impact), 40% improvement in ZK proof benchma...
+  CR=0.790 OS=0.288 P=0.700 S=0.752 → CROPS=0.6344
+  On-chain error: unconfigured name (value="0x1169ac6D18e4e74a6B43B3Ef78FcFb0e3C4b8c2", code=UNCONFIGURED_NAME, version=6.16.0)
+
+▶ iExec (RLC) — weight: 10.0%
+  Venice Δ=+0.10 | The audit confirmed secure Intel SGX integration and verified confidential compu...
+  CR=0.730 OS=0.104 P=0.300 S=0.420 → CROPS=0.4040
+  On-chain error: bad address checksum (argument="address", value="0xC8B960D09C0078c18Dcbe7eB9AB9d816BcCa8944", code=INVALID_ARGUMENT, version=6.16.0)
+
+▶ Uniswap (UNI) — weight: 10.0%
+  Venice Δ=+0.20 | The audit shows no critical findings, three medium issues were resolved, and the...
+  CR=0.730 OS=0.192 P=0.110 S=0.560 → CROPS=0.4065
+  ✅ Score on-chain: 0x7a7bb442e44228457c2410a9f5f0c1eaf6848b0d1ade943d7bc1525f6419d1c6
+
+▶ Aave (AAVE) — weight: 10.0%
+  Venice Δ=-0.10 | Security score was reduced due to the $500K bad debt absorbed in Jan 2026 and th...
+  CR=0.580 OS=0.136 P=0.115 S=0.622 → CROPS=0.3611
+  ✅ Score on-chain: 0xfcd60390bb94ce590d7124c760fd79cae96fc991537caa2f108cd209367579e5
+
+▶ ENS (ENS) — weight: 7.5%
+  Venice Δ=+0.20 | The audit confirms no vulnerabilities in ENS-DNS integration, a critical securit...
+  CR=0.910 OS=0.152 P=0.125 S=0.640 → CROPS=0.4702
+  ✅ Score on-chain: 0x5d86bf6f48899e1277e8c35421a296cad41087b256710f27ef5bed6bde4a79fb
+
+▶ Rocket Pool (RPL) — weight: 7.5%
+  Venice Δ=+0.20 | The audit confirmed adequate insurance coverage for node operators, successful p...
+  CR=0.790 OS=0.077 P=0.125 S=0.728 → CROPS=0.4330
+  ✅ Score on-chain: 0xfc8b7fad5bf8a422d2f5adae2823592986d94be948dee9a3422ddebe3e29fdc6
+
+▶ Gnosis Safe (SAFE) — weight: 5.0%
+  Venice Δ=+0.10 | The audit confirms the guard module pattern is robust against reentrancy (a crit...
+  CR=0.880 OS=0.192 P=0.140 S=1.000 → CROPS=0.5470
+  ✅ Score on-chain: 0xa845255ba3f447efae7b76ca3cf6d06d6c2416028a71f8694f9fc27090228549
+
+▶ Lido (LDO) — weight: 2.5%
+  Venice Δ=-0.10 | The audit notes a centralization risk due to top-5 operators controlling 38% of ...
+  CR=0.420 OS=0.176 P=0.110 S=0.800 → CROPS=0.3575
+  ✅ Score on-chain: 0xab19842597468025e690256817348040a8e7c352975fdd18ccafca91020c4407
+
+▶ Curve (CRV) — weight: 2.5%
+  Venice Δ=+0.20 | The audit confirms the vyper compiler vulnerability was fully patched across all...
+  CR=0.730 OS=0.120 P=0.110 S=0.458 → CROPS=0.3682
+  ✅ Score on-chain: 0x352522f669a6ef74171c96ede08ce8ec0ac765c832d1da0da82c9c25fdf5a000
+
+
+═══════════════════════════════════════════════════════
+  CROPS RANKINGS
+═══════════════════════════════════════════════════════
+  1. Aztec          █████████████        0.6344
+  2. Railgun        ███████████          0.5685
+  3. Gnosis Safe    ███████████          0.5470
+  4. ENS            █████████            0.4702
+  5. Rocket Pool    █████████            0.4330
+  6. Uniswap        ████████             0.4065
+  7. iExec          ████████             0.4040
+  8. Curve          ███████              0.3682
+  9. Aave           ███████              0.3611
+  10. Lido           ███████              0.3575
+
+
+═══════════════════════════════════════════════════════
+  REBALANCING (hybrid: real swaps where possible)
+═══════════════════════════════════════════════════════
+
+  Available ETH: 0.00455326331619364
+
+  Aztec: ETH base asset — hold
+  Railgun: ETH base asset — hold
+  Gnosis Safe: ETH base asset — hold
+  ENS: ETH base asset — hold
+  Rocket Pool: ETH base asset — hold
+  Uniswap: target 0.000455326331619364 ETH → UNI
+  ✅ Real swap (Uniswap API): 0x3d7c1f9015276ddf40340ee06fc97e854d44ec2b36c3fce9c9c1a72e3f4919c8
+  iExec: ETH base asset — hold
+  Curve: target 0.000113831582904841 ETH → CRV
+  ✅ Real swap (Uniswap API): 0x1c9fe4caf31d88ae6d3d69b9b49bffff787e0b3f24e79fe7bbf99574886fe670
+  Aave: target 0.000455326331619364 ETH → AAVE
+  ✅ Real swap (Uniswap API): 0x02e3ef27418f24c77a9faa0d859fa6d22954d6884751720c9b10e826e2be1276
+  Lido: ETH base asset — hold
+
+
+✅ Demo results saved to crops-scores-demo.json
+   Open dashboard/app.html to visualize all 10 protocols.
+

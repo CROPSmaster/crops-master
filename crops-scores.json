@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-22T10:48:14.713Z",
+  "timestamp": "2026-03-22T20:49:52.515Z",
   "scores": [
     {
       "name": "Railgun",
@@ -10,7 +10,7 @@
       "privacy": 0.675,
       "s": 0.455,
       "crops": 0.56855,
-      "scoreTx": "0x8516e557723944ce3bd4bb9ccde3b53fb6717c5f4c38692c4a23cabb45db20a0",
+      "scoreTx": "0xc21d48459ffeb538a3bf0436ba7ffbba571a93727f125990ce9260ccbcf4f9dc",
       "swapTx": null
     },
     {
@@ -22,8 +22,8 @@
       "privacy": 0.11,
       "s": 0.45999999999999996,
       "crops": 0.38650000000000007,
-      "scoreTx": "0x6bb38374f480e3babba9dd7d467a55868589c149749bfb54f0f587fb9d5f9319",
-      "swapTx": null
+      "scoreTx": "0x48debb93056d5e0a2c3e7a215c60f3366059f371a68a2d22d33f7b7afe61bd4a",
+      "swapTx": "0x54cb231a0da977025997e1bfc3546d4d8bd03030c966ac8a9995ed5a5005359b"
     },
     {
       "name": "Aave V3",
@@ -32,10 +32,10 @@
       "cr": 0.58,
       "os": 0.136,
       "privacy": 0.115,
-      "s": 0.522,
-      "crops": 0.34115,
-      "scoreTx": "0x4b0fd1b23f3c8122ca43fb9c33edbf694935c3871605d4b047a5caba86d5ce97",
-      "swapTx": null
+      "s": 0.622,
+      "crops": 0,
+      "scoreTx": "0x7673d78c841c9cea831c99304e78c1cd9de0791efcedee4004955979d418f171",
+      "swapTx": "0x676528981d107a1fd90121b0146190ee8f2c0e78ce1d2760b69c326752c6a835"
     }
   ],
   "top3": [
@@ -44,7 +44,7 @@
     "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
   ],
   "allocations": {
-    "Uniswap V4": "1358075522760033",
-    "Aave V3": "1198676987224818"
+    "Uniswap V4": "2583258060722881",
+    "Aave V3": "0"
   }
 }

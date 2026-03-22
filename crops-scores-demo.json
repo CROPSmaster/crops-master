@@ -1,0 +1,212 @@
+{
+  "timestamp": "2026-03-22T11:43:40.148Z",
+  "mode": "demo",
+  "agentWallet": "0x43fb3bc082C286Bb0F19AD3F98418bb9181d704F",
+  "vaultAddress": "0x339D8D21531abeBCd4612CF0c6e082FCc5fD6Dd1",
+  "scores": [
+    {
+      "name": "Aztec",
+      "ticker": "AZTEC",
+      "address": "0x1169ac6D18e4e74a6B43B3Ef78FcFb0e3C4b8c2",
+      "color": "#f97316",
+      "weight": 0.2,
+      "cr": 0.7899999999999999,
+      "os": 0.288,
+      "privacy": 0.7,
+      "s": 0.752,
+      "crops": 0.6344,
+      "delta": 0.2,
+      "veniceReasoning": "2 medium findings patched (positive impact), 40% improvement in ZK proof benchmarks (significant positive change), and 45% of contributors have prior Zcash/Semaphore experience (indicating technical expertise and reduced risk of vulnerabilities)",
+      "scoreTx": null,
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    },
+    {
+      "name": "Railgun",
+      "ticker": "RAIL",
+      "address": "0x3B3ee1931Dc30C1957379FAc9aba94D1C48a5405",
+      "color": "#a855f7",
+      "weight": 0.25,
+      "cr": 1,
+      "os": 0.0352,
+      "privacy": 0.675,
+      "s": 0.455,
+      "crops": 0.56855,
+      "delta": 0.2,
+      "veniceReasoning": "Audit confirms Groth16 proof system is verified with no vulnerabilities, privacy guarantees are third-party validated, and shielded pool TVL shows sustained growth indicating operational stability and security",
+      "scoreTx": "0x0f41e2a0c5cc20fe5f7ebfccef5a9800786695553d330ff4d0b20b9529a07c8c",
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    },
+    {
+      "name": "Gnosis Safe",
+      "ticker": "SAFE",
+      "address": "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2",
+      "color": "#22c55e",
+      "weight": 0.05,
+      "cr": 0.8799999999999999,
+      "os": 0.192,
+      "privacy": 0.14,
+      "s": 1,
+      "crops": 0.5469999999999999,
+      "delta": 0.1,
+      "veniceReasoning": "The audit confirms the guard module pattern is robust against reentrancy (a critical vulnerability) and 12 audits with zero critical findings over 4 years suggest ongoing security validation. This implies a positive security assurance update, warranting a +0.1 delta.",
+      "scoreTx": "0xa845255ba3f447efae7b76ca3cf6d06d6c2416028a71f8694f9fc27090228549",
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    },
+    {
+      "name": "ENS",
+      "ticker": "ENS",
+      "address": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+      "color": "#3b82f6",
+      "weight": 0.075,
+      "cr": 0.9099999999999999,
+      "os": 0.152,
+      "privacy": 0.125,
+      "s": 0.6400000000000001,
+      "crops": 0.47024999999999995,
+      "delta": 0.2,
+      "veniceReasoning": "The audit confirms no vulnerabilities in ENS-DNS integration, a critical security component, which would positively impact the security score. The DAO treasury composition and governance participation rate are described as stable and private, with no explicit security risks mentioned.",
+      "scoreTx": "0x5d86bf6f48899e1277e8c35421a296cad41087b256710f27ef5bed6bde4a79fb",
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    },
+    {
+      "name": "Rocket Pool",
+      "ticker": "RPL",
+      "address": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "color": "#f59e0b",
+      "weight": 0.075,
+      "cr": 0.7899999999999999,
+      "os": 0.07680000000000001,
+      "privacy": 0.125,
+      "s": 0.728,
+      "crops": 0.43305,
+      "delta": 0.2,
+      "veniceReasoning": "The audit confirmed adequate insurance coverage for node operators, successful performance of LEB8 minipools post-Atlas upgrade, and absence of centralization risks in top-20 operators, all indicating positive security validation.",
+      "scoreTx": "0xfc8b7fad5bf8a422d2f5adae2823592986d94be948dee9a3422ddebe3e29fdc6",
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    },
+    {
+      "name": "Uniswap",
+      "ticker": "UNI",
+      "address": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+      "color": "#ec4899",
+      "weight": 0.1,
+      "cr": 0.73,
+      "os": 0.192,
+      "privacy": 0.11,
+      "s": 0.56,
+      "crops": 0.4065000000000001,
+      "delta": 0.2,
+      "veniceReasoning": "The audit shows no critical findings, three medium issues were resolved, and the v4 hooks review significantly improved composability. While the Treasury multisig rotation is pending, it does not yet represent a security risk. The overall positive impact of resolved issues and architectural improvements justifies a +0.2 delta.",
+      "scoreTx": "0x7a7bb442e44228457c2410a9f5f0c1eaf6848b0d1ade943d7bc1525f6419d1c6",
+      "swap": {
+        "type": "real",
+        "txHash": "0x3d7c1f9015276ddf40340ee06fc97e854d44ec2b36c3fce9c9c1a72e3f4919c8",
+        "token": "USDC"
+      }
+    },
+    {
+      "name": "iExec",
+      "ticker": "RLC",
+      "address": "0xC8B960D09C0078c18Dcbe7eB9AB9d816BcCa8944",
+      "color": "#6366f1",
+      "weight": 0.1,
+      "cr": 0.73,
+      "os": 0.104,
+      "privacy": 0.3,
+      "s": 0.42000000000000004,
+      "crops": 0.404,
+      "delta": 0.1,
+      "veniceReasoning": "The audit confirmed secure Intel SGX integration and verified confidential computing workloads with no critical findings, indicating maintained security posture without notable risks.",
+      "scoreTx": null,
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    },
+    {
+      "name": "Curve",
+      "ticker": "CRV",
+      "address": "0xD533a949740bb3306d119CC777fa900bA034cd52",
+      "color": "#ef4444",
+      "weight": 0.025,
+      "cr": 0.73,
+      "os": 0.12,
+      "privacy": 0.11,
+      "s": 0.4584,
+      "crops": 0.36818,
+      "delta": 0.2,
+      "veniceReasoning": "The audit confirms the vyper compiler vulnerability was fully patched across all affected pools, the 2023 $6.2M loss is fully accounted for in exploit penalties, and current codebase shows no residual risk. This addresses prior security concerns and improves overall security posture.",
+      "scoreTx": "0x352522f669a6ef74171c96ede08ce8ec0ac765c832d1da0da82c9c25fdf5a000",
+      "swap": {
+        "type": "real",
+        "txHash": "0x1c9fe4caf31d88ae6d3d69b9b49bffff787e0b3f24e79fe7bbf99574886fe670",
+        "token": "USDC"
+      }
+    },
+    {
+      "name": "Aave",
+      "ticker": "AAVE",
+      "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "color": "#14b8a6",
+      "weight": 0.1,
+      "cr": 0.58,
+      "os": 0.136,
+      "privacy": 0.115,
+      "s": 0.622,
+      "crops": 0.36114999999999997,
+      "delta": -0.1,
+      "veniceReasoning": "Security score was reduced due to the $500K bad debt absorbed in Jan 2026 and the flagged single borrower concentration risk. The GHO stablecoin peg mechanisms under review may impact security posture, but the direct reduction is attributed to the bad debt event.",
+      "scoreTx": "0xfcd60390bb94ce590d7124c760fd79cae96fc991537caa2f108cd209367579e5",
+      "swap": {
+        "type": "real",
+        "txHash": "0x02e3ef27418f24c77a9faa0d859fa6d22954d6884751720c9b10e826e2be1276",
+        "token": "USDC"
+      }
+    },
+    {
+      "name": "Lido",
+      "ticker": "LDO",
+      "address": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "color": "#eab308",
+      "weight": 0.025,
+      "cr": 0.42000000000000004,
+      "os": 0.176,
+      "privacy": 0.11,
+      "s": 0.8,
+      "crops": 0.35750000000000004,
+      "delta": -0.1,
+      "veniceReasoning": "The audit notes a centralization risk due to top-5 operators controlling 38% of stake (above 33% threshold), which is a primary concern despite the security being described as 'strong'. The dual governance proposal in progress may mitigate risks, but the concentration of stake remains a material concern for decentralization.",
+      "scoreTx": "0xab19842597468025e690256817348040a8e7c352975fdd18ccafca91020c4407",
+      "swap": {
+        "type": "hold",
+        "note": "Base asset (ETH)"
+      }
+    }
+  ],
+  "portfolioFactors": {
+    "cr": 0.8122499999999999,
+    "os": 0.14375999999999997,
+    "privacy": 0.3925,
+    "s": 0.60841
+  },
+  "top3": [
+    "0x1169ac6D18e4e74a6B43B3Ef78FcFb0e3C4b8c2",
+    "0x3B3ee1931Dc30C1957379FAc9aba94D1C48a5405",
+    "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2"
+  ]
+}

@@ -111,6 +111,43 @@ async function getVeniceDelta(protocol: string, privateMemo: string): Promise<nu
   }
 }
 
+
+// ── Slash registry ───────────────────────────────────────────────
+const SLASH_REGISTRY = new Map();
+const REBALANCE_INTERVAL_WEEKS = 2;
+
+async function detectGaming(protocol, privateMemo, publicKnowledge) {
+  try {
+    const result = await venice.chat.completions.create({
+      model: "qwen3-4b",
+      messages: [
+        { role: "system", content: 'You are a DeFi audit verification agent. Compare the private memo against known public facts. If the memo contains false or misleading claims designed to inflate the protocol CROPS score, return gamed=true. Return only raw JSON: {"gamed": boolean, "reason": string}' },
+        { role: "user", content: `Protocol: ${protocol}\nPrivate memo: ${privateMemo}\nKnown public facts: ${publicKnowledge}` },
+      ],
+    });
+    const rawText = result.choices[0].message.content ?? '{"gamed": false, "reason": ""}';
+    const text = rawText.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+    const parsed = JSON.parse(text);
+    return { gamed: parsed.gamed ?? false, reason: parsed.reason ?? "" };
+  } catch (e) {
+    return { gamed: false, reason: "verification unavailable" };
+  }
+}
+
+async function slashProtocol(address, name, reason) {
+  console.log(`  ⚡ SLASHING ${name}: ${reason}`);
+  SLASH_REGISTRY.set(name, { reason, slashedAt: new Date().toISOString() });
+  try {
+    const tx = await vault.updateScore(address, 0);
+    await tx.wait();
+    console.log(`  ✅ Slash committed on-chain: ${tx.hash}`);
+    return tx.hash;
+  } catch (e) {
+    console.error(`  ❌ Slash tx failed:`, e.message);
+    return null;
+  }
+}
+
 async function commitScoreOnChain(address: string, score: number, name: string) {
   try {
     const scoreOnChain = Math.round(score * 10000);
@@ -220,6 +257,7 @@ const USDC_ABI = [
   "function balanceOf(address) view returns (uint256)",
   "function decimals() view returns (uint8)",
   "function approve(address spender, uint256 amount) returns (bool)",
+  "function allowance(address owner, address spender) view returns (uint256)",
 ];
 
 async function getPortfolioState() {
@@ -232,72 +270,51 @@ async function getPortfolioState() {
   return { ethBalance, usdcBalance, decimals };
 }
 
-// ── Sell token → ETH via Uniswap API ────────────────────────────
+// ── Sell token → ETH via SwapRouter02 (V3, no Permit2) ─────────
 async function uniswapSell(tokenIn: string, tokenSymbol: string, amountIn: bigint): Promise<string | null> {
   try {
-    const API_URL = "https://trade-api.gateway.uniswap.org/v1";
-    const headers: Record<string, string> = {
-      "x-api-key": process.env.UNISWAP_API_KEY!,
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-    };
+    const SWAP_ROUTER_02 = "0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E";
+    const WETH = "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14";
+    const ROUTER_ABI = [
+      "function exactInputSingle((address tokenIn, address tokenOut, uint24 fee, address recipient, uint256 amountIn, uint256 amountOutMinimum, uint160 sqrtPriceLimitX96) params) external payable returns (uint256 amountOut)",
+    ];
+    const WETH_ABI = [
+      "function withdraw(uint256 amount) external",
+      "function balanceOf(address) view returns (uint256)",
+    ];
 
-    console.log(`  Requesting Uniswap API quote: ${tokenSymbol} -> ETH...`);
-    const quoteRes = await fetch(`${API_URL}/quote`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        tokenIn,
-        tokenOut: "0x0000000000000000000000000000000000000000",
-        tokenInChainId: CHAIN_ID,
-        tokenOutChainId: CHAIN_ID,
-        type: "EXACT_INPUT",
-        amount: amountIn.toString(),
-        swapper: agentWallet.address,
-        routingPreference: "BEST_PRICE",
-        slippageTolerance: 0.5,
-      }),
-    });
-
-    const quoteData = await quoteRes.json();
-    if (!quoteRes.ok) {
-      console.error(`  Sell quote error:`, JSON.stringify(quoteData).slice(0, 200));
-      return null;
+    const tokenContract = new ethers.Contract(tokenIn, USDC_ABI, agentWallet);
+    const allowance = await tokenContract.allowance(agentWallet.address, SWAP_ROUTER_02);
+    if (allowance < amountIn) {
+      console.log(`  Approving ${tokenSymbol} for SwapRouter02...`);
+      const approveTx = await tokenContract.approve(SWAP_ROUTER_02, ethers.MaxUint256);
+      await approveTx.wait();
+      console.log(`  Approved`);
     }
 
-    const { quote, permitData, routing } = quoteData;
-    console.log(`  Sell quote: routing=${routing}`);
+    const router = new ethers.Contract(SWAP_ROUTER_02, ROUTER_ABI, agentWallet);
+    console.log(`  SwapRouter02 V3: ${ethers.formatUnits(amountIn, 6)} ${tokenSymbol} → WETH...`);
+    const swapTx = await router.exactInputSingle({
+      tokenIn,
+      tokenOut: WETH,
+      fee: 3000,
+      recipient: agentWallet.address,
+      amountIn,
+      amountOutMinimum: 0n,
+      sqrtPriceLimitX96: 0n,
+    }, { gasLimit: 300000n });
+    await swapTx.wait();
+    console.log(`  Swap USDC→WETH: ${swapTx.hash}`);
 
-    let signature: string | undefined;
-    if (permitData) {
-      signature = await agentWallet.signTypedData(
-        permitData.domain,
-        permitData.types,
-        permitData.values
-      );
+    const weth = new ethers.Contract(WETH, WETH_ABI, agentWallet);
+    const wethBalance = await weth.balanceOf(agentWallet.address);
+    if (wethBalance > 0n) {
+      const unwrapTx = await weth.withdraw(wethBalance, { gasLimit: 100000n });
+      await unwrapTx.wait();
+      console.log(`  Unwrapped WETH→ETH: ${unwrapTx.hash}`);
     }
 
-    const swapRes = await fetch(`${API_URL}/swap`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ signature, quote, ...(permitData ? { permitData } : {}) }),
-    });
-    const swapData = await swapRes.json();
-    if (!swapRes.ok) {
-      console.error(`  Sell swap error:`, JSON.stringify(swapData).slice(0, 200));
-      return null;
-    }
-
-    const txObj = swapData.swap;
-    const tx = await agentWallet.sendTransaction({
-      to: txObj.to,
-      data: txObj.data,
-      value: txObj.value ? BigInt(txObj.value) : 0n,
-      gasLimit: txObj.gasLimit ? BigInt(txObj.gasLimit) : BigInt(500000),
-    });
-    await tx.wait();
-    console.log(`  Sell ${tokenSymbol}->ETH via Uniswap API: ${tx.hash}`);
-    return tx.hash;
+    return swapTx.hash;
   } catch (e) {
     console.error(`  Sell error:`, (e as Error).message);
     return null;
@@ -331,6 +348,14 @@ async function rebalanceVault(results: any[]) {
   for (const r of results) {
     if (r.tokenSymbol === "WETH") {
       console.log(`  ${r.name}: base asset (ETH) — hold`);
+      continue;
+    }
+
+    // If slashed (crops=0), exit entire token position regardless of delta tracking
+    if (r.crops === 0 && usdcBalance > 1000000n) {
+      console.log(`  ${r.name}: SLASHED — exiting entire position (${ethers.formatUnits(usdcBalance, decimals)} USDC → ETH)`);
+      r.swapTx = await uniswapSell(r.token, r.tokenSymbol, usdcBalance);
+      r.allocatedEth = "0";
       continue;
     }
 
@@ -392,6 +417,31 @@ async function main() {
 
   console.log("\n=== CROPS Rankings ===");
   results.forEach((r, i) => console.log(`${i + 1}. ${r.name}: ${r.crops.toFixed(4)}`));
+
+
+  // ── Confidential update: gaming attempt demo ─────────────────
+  console.log("\n=== CONFIDENTIAL UPDATE RECEIVED ===");
+  console.log("  Protocol: Aave V3");
+  console.log("  Claim: No bad debt. All positions fully collateralized at 150%+ LTV.");
+
+  const gamingMemo = "No bad debt exposure whatsoever. All positions are fully collateralized at 150%+ LTV. Zero incidents in 2026.";
+  const aavePublicFacts = "Aave V3 publicly absorbed $500K bad debt in Jan 2026. GHO stablecoin peg instability reported. Single-borrower concentration risk flagged.";
+
+  const { gamed, reason: gamingReason } = await detectGaming("Aave V3", gamingMemo, aavePublicFacts);
+  console.log(`  Venice verdict: gamed=${gamed} | ${gamingReason}`);
+
+  if (gamed) {
+    const aaveAddr = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
+    const slashTx = await slashProtocol(aaveAddr, "Aave V3", gamingReason);
+    const aaveIdx = results.findIndex((r) => r.name === "Aave V3");
+    if (aaveIdx !== -1) {
+      results[aaveIdx].crops = 0;
+      results[aaveIdx].slashed = true;
+      results[aaveIdx].slashTx = slashTx;
+    }
+    console.log("  → Aave V3 weight set to 0 — position will be exited via Uniswap");
+  }
+  // ─────────────────────────────────────────────────────────────
 
   const allocations = await rebalanceVault(results);
 
