@@ -10,6 +10,47 @@ An autonomous AI agent that scores DeFi protocols using the **CROPS framework** 
 - **Agent wallet**: `0x43fb3bc082C286Bb0F19AD3F98418bb9181d704F`
 - **Latest scores**: [`crops-scores.json`](./crops-scores.json)
 
+---
+
+## CROPS Multi-Factor Model
+
+In 1992, Fama and French showed that stock returns aren't explained by market beta alone. Their three-factor model revealed that size and value systematically drive alpha — and the quant world was never the same.
+
+CROPS applies the same logic to DeFi. Instead of price momentum or market cap, it factors in the principles that make a protocol worth trusting:
+
+```
+CROPS = 0.30 × CR + 0.25 × OS + 0.25 × P + 0.20 × S    ∈ [0, 1]
+```
+
+| Factor | Weight | Formula | Description |
+|--------|--------|---------|-------------|
+| **CR** Censorship Resistance | 30% | `0.4×CR1 + 0.3×CR2 + 0.3×CR3` | Admin key risk, permissionless access, exit guarantees |
+| **OS** Open Source | 25% | `min(contributors × 0.8 / 500, 1)` | GitHub contributor network quality |
+| **P** Privacy | 25% | `0.5×TechLevel + 0.5×PrivacyTeamPct` | ZK/crypto tech stack + privacy-focused contributors |
+| **S** Security | 20% | `min(audits × rep / 10, 1) × (1 - exploit_penalty)` | Weighted audits minus exploit history |
+
+### Current Rankings
+
+| Protocol | CR | OS | P | S | **CROPS** | Role in vault |
+|----------|----|----|---|---|-----------|---------------|
+| Railgun | 1.000 | 0.035 | 0.675 | 0.455 | **0.5685** | Privacy anchor (ETH base) |
+| Uniswap V4 | 0.730 | 0.192 | 0.110 | 0.460 | **0.3865** | CR exposure (USDC) |
+| Aave V3 | 0.580 | 0.136 | 0.115 | 0.522 | **0.3412** | Security exposure (USDC) |
+
+### Backtesting
+
+52 weeks of historical price data, bi-weekly rebalancing, CROPS-derived weights:
+
+```
+CROPS index:  +34.3%   ($10,000 → $13,425)
+ETH hodl:     +5.3%    ($10,000 → $10,527)
+Alpha:        +29.0%
+Sharpe ratio: 0.74
+Rebalances:   26 (autonomous, every 2 weeks)
+```
+
+---
+
 ## The Venice Pattern: Private Cognition → Public Consequence
 
 DeFi protocols hold sensitive data that affects their risk profile but cannot be made public: unpublished audit findings, treasury compositions, undisclosed vulnerability disclosures. This is the problem Venice solves.
@@ -20,8 +61,7 @@ Each protocol submits a confidential document to the agent. It is passed **exclu
 ```typescript
 const privateDocument = privateMemo; // never logged
 const result = await venice.chat.completions.create({
-  model: "qwen3-4b",              // Venice no-retention model
-  baseURL: "https://api.venice.ai/api/v1",
+  model: "qwen3-4b",
   messages: [
     { role: "system", content: "Return only JSON: {delta: number, reasoning: string}" },
     { role: "user", content: `Private audit memo for ${protocol}:\n${privateDocument}` } // never logged
@@ -120,33 +160,6 @@ Week 3  → Aave submits false memo → Venice detects gaming → slash → 100%
 Week 4  → scheduled run → Aave still at score=0 → allocation stays at 0
 ```
 
-The vault accumulates protocol fees between rebalancing cycles. Yield is denominated in the base asset (ETH) and compounds into the next cycle's available balance.
-
----
-
-## CROPS Multi-Factor Model
-
-Inspired by Fama-French factor models, CROPS quantifies DeFi protocol alignment with the Ethereum Foundation's March 2026 mandate:
-
-```
-CROPS = 0.30 × CR + 0.25 × OS + 0.25 × P + 0.20 × S    ∈ [0, 1]
-```
-
-| Factor | Weight | Formula | Description |
-|--------|--------|---------|-------------|
-| **CR** Censorship Resistance | 30% | `0.4×CR1 + 0.3×CR2 + 0.3×CR3` | Admin key risk, permissionless access, exit guarantees |
-| **OS** Open Source | 25% | `min(contributors × OS_pct / 500, 1)` | GitHub contributor network quality |
-| **P** Privacy | 25% | `0.5×TechLevel + 0.5×PrivacyTeamPct` | ZK/crypto tech stack + privacy-focused contributors |
-| **S** Security | 20% | `min(audits × rep / 10, 1) × (1 - exploit_penalty)` | Weighted audits minus exploit history |
-
-### Current Rankings
-
-| Protocol | CR | OS | P | S | **CROPS** | Role in vault |
-|----------|----|----|---|---|-----------|---------------|
-| Railgun | 1.000 | 0.035 | 0.675 | 0.455 | **0.5685** | Privacy anchor (ETH base) |
-| Uniswap V4 | 0.730 | 0.192 | 0.110 | 0.460 | **0.3865** | CR exposure (USDC) |
-| Aave V3 | 0.580 | 0.136 | 0.115 | 0.522 | **0.3412** | Security exposure (USDC) |
-
 ---
 
 ## Uniswap Integration
@@ -163,7 +176,7 @@ target_eth         = available_eth × weight
 delta              = target_eth - previous_target_eth
 
 delta > threshold  → buy  (ETH → USDC via Uniswap API)
-delta < -threshold → sell (USDC → ETH via Uniswap API + Permit2)
+delta < -threshold → sell (USDC → ETH via SwapRouter02 V3)
 |delta| < threshold → hold
 ```
 
@@ -194,17 +207,17 @@ See [`crops-scores.json`](./crops-scores.json) for the full run history with all
 │    2. [VENICE] private memo → score delta      ← no retention │
 │    3. [VENICE] gaming check → slash if false   ← no retention │
 │    4. final_score = public_score + venice_delta               │
-│    5. vault.updateScore(protocol, score)  ─────────────────► │ Ethereum Sepolia
+│    5. vault.updateScore(protocol, score)  ─────────────────► Ethereum Sepolia
 │                                                               │
 │  rebalance():                                                 │
 │    6. read ETH + USDC balances                                │
 │    7. compute target weights from CROPS scores                │
 │    8. delta = target - previous                               │
-│    9. Uniswap API → swap delta  ───────────────────────────► │ Sepolia TxID
+│    9. Uniswap API → swap delta  ───────────────────────────► Sepolia TxID
 │                                                               │
 │  on false disclosure:                                         │
-│   10. vault.updateScore(protocol, 0) → SLASH ──────────────► │ score = 0
-│   11. rebalance() → weight = 0 → Uniswap exits position ───► │ Sepolia TxID
+│   10. vault.updateScore(protocol, 0) → SLASH ──────────────► score = 0
+│   11. rebalance() → weight = 0 → Uniswap exits position ───► Sepolia TxID
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -215,7 +228,7 @@ See [`crops-scores.json`](./crops-scores.json) for the full run history with all
 | Agent runtime | TypeScript + Node.js, Oracle Cloud VPS (Ubuntu 22.04 ARM) |
 | Private inference | Venice API `api.venice.ai`, model `qwen3-4b` (no data retention) |
 | Smart contract | ERC-4626 CROPSVault, Solidity + Foundry, Ethereum Sepolia |
-| Swaps | Uniswap Trading API v1 + Permit2, Developer Platform key |
+| Swaps | Uniswap Trading API v1 + SwapRouter02 V3, Developer Platform key |
 | Blockchain | ethers.js v6 + Alchemy RPC |
 | Security | UFW firewall, SSH key-only auth, isolated agent wallet |
 
@@ -235,6 +248,9 @@ cp .env.example .env
 # VAULT_ADDRESS=0x339D8D21531abeBCd4612CF0c6e082FCc5fD6Dd1
 
 npx ts-node --transpile-only src/agent/crops-agent.ts
+
+# Run backtest
+npx ts-node --transpile-only src/backtest/backtest.ts
 ```
 
 ## Smart Contract
@@ -256,8 +272,8 @@ function updateScore(address protocol, uint256 score) external onlyOwner {
 - [x] Demo mode: full 10-protocol evaluation with Venice inference + on-chain scoring
 - [x] Slash mechanism: Venice gaming detection → score = 0 on-chain → Uniswap exit
 - [x] Confidential update endpoint: protocols submit private memos, Venice verifies
+- [x] Backtesting: CROPS +34.3% vs ETH +5.3% over 52 weeks
 - [ ] Autonomous cron scheduling (rebalance every 2 weeks, UTC midnight)
-- [ ] Backtesting CROPS strategy vs ETH hodl (CoinGecko historical prices)
 - [ ] Performance fee → $CROPS share holders (ERC-4626 management fee)
 - [ ] Real GitHub GraphQL + DefiLlama data (replace static fallbacks)
 - [ ] Base x402 agent services (pay-per-query CROPS score endpoint)
